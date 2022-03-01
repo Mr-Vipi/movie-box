@@ -1,22 +1,20 @@
 import { getAuth } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SignUp from "../components/SignUp";
 
-export interface ILoginPageProps {}
+export interface IAuthPageProps {}
 
-const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
+const AuthPage: React.FunctionComponent<IAuthPageProps> = (props) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [authing, setAuthing] = useState(false);
 
-  const signInWithEmail = async () => {
-    setAuthing(true);
-  };
-
   return (
     <div>
-      <p>Login Page</p>
+      <SignUp />
     </div>
   );
 };
-export default LoginPage;
+
+export default AuthPage;
