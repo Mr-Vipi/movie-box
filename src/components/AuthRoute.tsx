@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export interface IAuthRouteProps {}
 
-const AuthRoute: React.FunctionComponent<IAuthRouteProps> = (props) => {
-  const { children } = props;
+const AuthRoute: React.FunctionComponent<IAuthRouteProps> = ({ children }) => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
