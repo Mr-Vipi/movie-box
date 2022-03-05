@@ -9,19 +9,63 @@ import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
-export default function SignUp() {
+export interface IAuthPageProps {}
+
+const AuthPage: React.FunctionComponent<IAuthPageProps> = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [hasAccount, setHasAccount] = useState(false);
+  const navigate = useNavigate();
+
+  const auth = getAuth();
+
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        // ..
+      });
+  };
+
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    if (hasAccount) {
+      handleSignIn();
+    } else {
+      handleSignUp();
+    }
   };
 
   return (
@@ -40,7 +84,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            {hasAccount ? "Sign in" : "Sign Up"}
           </Typography>
           <Box
             component="form"
@@ -57,6 +101,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -68,6 +113,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -77,12 +123,21 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              {hasAccount ? "Sign In" : "Sign Up"}
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid
+              container
+              justifyContent={hasAccount ? "flex-end" : "flex-start"}
+            >
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={() => setHasAccount(!hasAccount)}
+                >
+                  {hasAccount
+                    ? "Don't have an account? Sign Up"
+                    : "Already have an account? Sign in"}
                 </Link>
               </Grid>
             </Grid>
@@ -91,4 +146,6 @@ export default function SignUp() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default AuthPage;

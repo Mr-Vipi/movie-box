@@ -3,11 +3,12 @@ import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AuthRoute from "./components/AuthRoute";
 import { firebaseConfig } from "./config";
-import AuthPage from "./pages/Auth";
-import MainPage from "./pages/Main";
+import AuthPage from "./pages/AuthPage";
+import MainPage from "./pages/MainPage";
 
 initializeApp(firebaseConfig);
-export interface IApplicationProps {}
+
+interface IApplicationProps {}
 
 const Application: React.FunctionComponent<IApplicationProps> = (props) => {
   return (
