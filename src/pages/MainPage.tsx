@@ -1,10 +1,11 @@
 import { Button } from "@mui/material";
 import { getAuth, signOut } from "firebase/auth";
 import React from "react";
+import Characters from "../components/Characters";
 
 interface IMainPageProps {}
 
-const MainPage: React.FunctionComponent<IMainPageProps> = (props) => {
+const MainPage: React.FC<IMainPageProps> = () => {
   const auth = getAuth();
   const handleClick = () => {
     signOut(auth)
@@ -17,8 +18,8 @@ const MainPage: React.FunctionComponent<IMainPageProps> = (props) => {
   };
 
   return (
-    <div>
-      <p>Main Page (Protected by Firebase!)</p>
+    <>
+      <Characters />
       <Button
         onClick={handleClick}
         fullWidth
@@ -27,7 +28,7 @@ const MainPage: React.FunctionComponent<IMainPageProps> = (props) => {
       >
         Sign Out
       </Button>
-    </div>
+    </>
   );
 };
 

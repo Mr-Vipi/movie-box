@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyCCdg7QTSbzn9AtIsX3QzTvNQgqNnq6tCI",
+  authDomain: "movie-box-dev.firebaseapp.com",
+  projectId: "movie-box-dev",
+  storageBucket: "movie-box-dev.appspot.com",
+  messagingSenderId: "262876612100",
+  appId: "1:262876612100:web:f71dbe13a95e93fcc2d751",
 };

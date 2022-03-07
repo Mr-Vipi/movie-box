@@ -19,9 +19,9 @@ import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
-export interface IAuthPageProps {}
+interface IAuthPageProps {}
 
-const AuthPage: React.FunctionComponent<IAuthPageProps> = (props) => {
+const AuthPage: React.FC<IAuthPageProps> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
