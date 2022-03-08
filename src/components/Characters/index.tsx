@@ -1,3 +1,4 @@
+import { Stack } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -65,7 +66,11 @@ const Characters: React.FC<ICharactersProps> = () => {
   };
 
   if (loading) {
-    return <CircularProgress />;
+    return (
+      <Stack alignItems="center">
+        <CircularProgress size={600} thickness={1} />
+      </Stack>
+    );
   } else {
     return (
       <Paper sx={{ width: "100%" }}>
