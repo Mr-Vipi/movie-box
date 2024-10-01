@@ -1,27 +1,28 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  createTheme,
+  CssBaseline,
+  Grid2,
+  Link,
+  TextField,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import React, { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
-interface IAuthPageProps {}
-
-const AuthPage: React.FC<IAuthPageProps> = () => {
+export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
@@ -31,35 +32,29 @@ const AuthPage: React.FC<IAuthPageProps> = () => {
 
   const handleSignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(() => {
         // Signed in
-        const user = userCredential.user;
-        console.log(user);
         navigate("/");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
         const errorMessage = error.message;
-        console.log(errorMessage);
+        console.error(errorMessage);
         // ..
       });
   };
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(() => {
         // Signed in
-        const user = userCredential.user;
         navigate("/");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        console.error(error.message);
       });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (hasAccount) {
       handleSignIn();
@@ -67,7 +62,6 @@ const AuthPage: React.FC<IAuthPageProps> = () => {
       handleSignUp();
     }
   };
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -92,8 +86,8 @@ const AuthPage: React.FC<IAuthPageProps> = () => {
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
+            <Grid2 container spacing={2}>
+              <Grid2 size={12}>
                 <TextField
                   required
                   fullWidth
@@ -103,8 +97,8 @@ const AuthPage: React.FC<IAuthPageProps> = () => {
                   autoComplete="email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </Grid2>
+              <Grid2 size={12}>
                 <TextField
                   required
                   fullWidth
@@ -115,8 +109,8 @@ const AuthPage: React.FC<IAuthPageProps> = () => {
                   autoComplete="new-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </Grid>
-            </Grid>
+              </Grid2>
+            </Grid2>
             <Button
               type="submit"
               fullWidth
@@ -125,11 +119,11 @@ const AuthPage: React.FC<IAuthPageProps> = () => {
             >
               {hasAccount ? "Sign In" : "Sign Up"}
             </Button>
-            <Grid
+            <Grid2
               container
               justifyContent={hasAccount ? "flex-end" : "flex-start"}
             >
-              <Grid item>
+              <Grid2>
                 <Link
                   href="#"
                   variant="body2"
@@ -139,13 +133,11 @@ const AuthPage: React.FC<IAuthPageProps> = () => {
                     ? "Don't have an account? Sign Up"
                     : "Already have an account? Sign in"}
                 </Link>
-              </Grid>
-            </Grid>
+              </Grid2>
+            </Grid2>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
   );
-};
-
-export default AuthPage;
+}
