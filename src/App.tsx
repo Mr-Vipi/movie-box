@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AuthRoute from "./components/AuthRoute";
 import { firebaseConfig } from "./config";
@@ -8,9 +7,7 @@ import MainPage from "./pages/MainPage";
 
 initializeApp(firebaseConfig);
 
-interface IAppProps {}
-
-const App: React.FC<IAppProps> = () => {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -27,6 +24,4 @@ const App: React.FC<IAppProps> = () => {
       </Routes>
     </BrowserRouter>
   );
-};
-
-export default App;
+}

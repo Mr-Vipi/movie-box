@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyCCdg7QTSbzn9AtIsX3QzTvNQgqNnq6tCI",
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "movie-box-dev.firebaseapp.com",
   projectId: "movie-box-dev",
   storageBucket: "movie-box-dev.appspot.com",

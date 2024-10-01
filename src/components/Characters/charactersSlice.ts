@@ -29,22 +29,22 @@ const charactersSlice = createSlice({
   name: "charactersSlice",
   initialState,
   reducers: {},
-  extraReducers: {
-    [getCharacters.pending.type]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(getCharacters.pending, (state) => {
       state.loading = true;
-      state.error = action;
-    },
-    [getCharacters.rejected.type]: (state, action) => {
-      state.loading = false;
-      state.error = action;
-    },
-    [getCharacters.fulfilled.type]: (state, action) => {
+    });
+    builder.addCase(getCharacters.fulfilled, (state, action) => {
       state.loading = false;
       state.response = action.payload;
       state.initialResponse = action.payload;
-    },
+    });
+    builder.addCase(getCharacters.rejected, (state) => {
+      state.loading = false;
+      state.error = true;
+    });
   },
 });
 
-export const charactersSelector = (state: any) => state.characters;
+export const charactersSelector = (state: { characters: CharactersType }) =>
+  state.characters;
 export default charactersSlice.reducer;

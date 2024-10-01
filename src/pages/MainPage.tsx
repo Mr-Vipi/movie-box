@@ -1,11 +1,8 @@
 import { Button } from "@mui/material";
 import { getAuth, signOut } from "firebase/auth";
-import React from "react";
 import Characters from "../components/Characters";
 
-interface IMainPageProps {}
-
-const MainPage: React.FC<IMainPageProps> = () => {
+export default function MainPage() {
   const auth = getAuth();
   const handleClick = () => {
     signOut(auth)
@@ -14,6 +11,7 @@ const MainPage: React.FC<IMainPageProps> = () => {
       })
       .catch((error) => {
         // An error happened.
+        console.error(error);
       });
   };
 
@@ -30,6 +28,4 @@ const MainPage: React.FC<IMainPageProps> = () => {
       </Button>
     </>
   );
-};
-
-export default MainPage;
+}
