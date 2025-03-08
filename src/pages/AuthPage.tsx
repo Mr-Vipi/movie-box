@@ -18,7 +18,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const theme = createTheme();
 
