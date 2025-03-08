@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import AuthRoute from "./components/AuthRoute";
 import { firebaseConfig } from "./config";
 import AuthPage from "./pages/AuthPage";
