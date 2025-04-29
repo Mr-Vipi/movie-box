@@ -6,7 +6,7 @@ import {
   Container,
   createTheme,
   CssBaseline,
-  Grid2,
+  Grid,
   Link,
   TextField,
   ThemeProvider,
@@ -86,8 +86,8 @@ export default function AuthPage() {
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
-            <Grid2 container spacing={2}>
-              <Grid2 size={12}>
+            <Grid container spacing={2}>
+              <Grid size={12}>
                 <TextField
                   required
                   fullWidth
@@ -97,8 +97,8 @@ export default function AuthPage() {
                   autoComplete="email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-              </Grid2>
-              <Grid2 size={12}>
+              </Grid>
+              <Grid size={12}>
                 <TextField
                   required
                   fullWidth
@@ -109,8 +109,8 @@ export default function AuthPage() {
                   autoComplete="new-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </Grid2>
-            </Grid2>
+              </Grid>
+            </Grid>
             <Button
               type="submit"
               fullWidth
@@ -119,11 +119,11 @@ export default function AuthPage() {
             >
               {hasAccount ? "Sign In" : "Sign Up"}
             </Button>
-            <Grid2
+            <Grid
               container
               justifyContent={hasAccount ? "flex-end" : "flex-start"}
             >
-              <Grid2>
+              <Grid>
                 <Link
                   href="#"
                   variant="body2"
@@ -133,8 +133,8 @@ export default function AuthPage() {
                     ? "Don't have an account? Sign Up"
                     : "Already have an account? Sign in"}
                 </Link>
-              </Grid2>
-            </Grid2>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
       </Container>
