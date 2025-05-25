@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { CharactersResponseType } from "../../models/characters";
 import api from "../../services/api";
+import type { CharactersResponseType } from "../../models/characters";
 
 type CharactersType = {
   loading: boolean;
