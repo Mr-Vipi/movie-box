@@ -1,7 +1,3 @@
-packages:
-  - .
-ignoredBuiltDependencies:
-  - "@firebase/util"
-  - "@swc/core"
-  - esbuild
-  - protobufjs
+allowBuilds:
+  '@firebase/util': true
+  protobufjs: true
