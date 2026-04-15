@@ -17,8 +17,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import type { FormEvent } from "react";
-import { useState } from "react";
+import { useState, type SyntheticEvent } from "react";
 import { useNavigate } from "react-router";
 
 const theme = createTheme();
@@ -55,7 +54,7 @@ export default function AuthPage() {
       });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (hasAccount) {
       handleSignIn();
@@ -122,7 +121,7 @@ export default function AuthPage() {
             </Button>
             <Grid
               container
-              justifyContent={hasAccount ? "flex-end" : "flex-start"}
+              sx={{ justifyContent: hasAccount ? "flex-end" : "flex-start" }}
             >
               <Grid>
                 <Link

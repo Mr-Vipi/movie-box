@@ -60,14 +60,14 @@ export default function Characters() {
   };
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
   return loading ? (
-    <Stack alignItems="center">
+    <Stack sx={{ alignItems: "center" }}>
       <CircularProgress size={600} thickness={1} />
     </Stack>
   ) : (
